@@ -394,8 +394,11 @@ window.location.replace('indexBad.php');
             <li class="nav-item"> <a class="nav-link" href="listadoCtaCteProve.php">Cuentas a Pagar</a></li>
             <li class="nav-item"> <a class="nav-link" href="listadoCompras.php">Compras</a></li>
 
-                <li class="nav-item"> <a class="nav-link" href="listadoIngresos.php">Ingresos</a></li>
-                <li class="nav-item"> <a class="nav-link" href="listadoEgresos.php">Egresos</a></li>
+                <li class="nav-item"> <a class="nav-link" href="listadoIngresos.php">Detalle Ingresos</a></li>
+                <li class="nav-item"> <a class="nav-link" href="resumenIngresos.php">Ingresos</a></li>
+                
+                <li class="nav-item"> <a class="nav-link" href="listadoEgresos.php">Detalle Egresos</a></li>
+                <li class="nav-item"> <a class="nav-link" href="resumenEgresos.php">Egresos</a></li>
             <li class="nav-item"> <a class="nav-link" href="listadoMediosDePago2.php">Mov x Medio Pago</a></li>
             
             
