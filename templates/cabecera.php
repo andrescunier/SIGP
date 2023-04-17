@@ -368,6 +368,7 @@ window.location.replace('indexBad.php');
                 <li class="nav-item"> <a class="nav-link" href="formularioIngresaCategoria.php">Alta Categorías</a></li>
                 <li class="nav-item"> <a class="nav-link" href="listadoCategorias.php">Listado Categorías</a></li>
                 <li class="nav-item"> <a class="nav-link" href="listadoIIBB.php">Detalle Z</a></li>
+                <li class="nav-item"> <a class="nav-link" href="Zresumido.php">Resumen Z</a></li>
                 <li class="nav-item"> <a class="nav-link" href="listadoIvaVentas.php">Listado IVA Ventas</a></li>
                 <li class="nav-item"> <a class="nav-link" href="listadoIvaCompras.php">Listado IVA Compras</a></li>
 

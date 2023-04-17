@@ -77,7 +77,7 @@ unset($_SESSION['COBRO']);
                       </thead>
                       <tbody>
        
-                      <?php $filtro=$producto['DNI'] ?>
+                 <?php// $filtro=$producto['DNI'] ?>
     <?php
             $sentencia=$pdo->prepare("SELECT * from categorias");
             $sentencia->execute();

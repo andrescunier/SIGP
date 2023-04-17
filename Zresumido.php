@@ -65,13 +65,13 @@ $hasta=date("Y-m-d");
         <div class="content-wrapper">
           <div class="card">
             <div class="card-body">
-              <h1 class="card-title">Z DETALLADO
+              <h1 class="card-title">Z RESUMIDO
  </h1>
               <div class="row">
 
 
               <div class="form-group row">
-                  <form action="listadoIIBB.php" method="get" class="form-sample" target="_blank">
+                  <form action="Zresumido.php" method="get" class="form-sample" target="_blank">
 
                     <div class="form-group row">
                           <label class="col-sm-3 col-form-label" for="fname">Desde:</label>
@@ -97,10 +97,7 @@ $hasta=date("Y-m-d");
                     <table id="order-listing" class="table">
                       <thead>
                         <tr>
-                        <th width="8%" text-right>Fecha </th>    
-    
-
-    <th width="8%" text-right>Numero</th>
+                        
     <th width="8%" text-right>Actividad</th>
 
     <th width="8%" text-right>Imp. Neto Grabado</th>
@@ -114,7 +111,7 @@ $hasta=date("Y-m-d");
                       <tbody>
        
                       <?php
-            $sentencia=$pdo->prepare("SELECT tldproductos.Nombre ,(tbldetalleventa.CANTIDAD*tbldetalleventa.PRECIOUNITARIO)/1.21 as NETO, (tbldetalleventa.CANTIDAD*tbldetalleventa.PRECIOUNITARIO)-((tbldetalleventa.CANTIDAD*tbldetalleventa.PRECIOUNITARIO)/1.21) AS IVA , tbldetalleventa.CANTIDAD*tbldetalleventa.PRECIOUNITARIO as TOTAL FROM tblventas LEFT JOIN tbldetalleventa on tblventas.ID=tbldetalleventa.IDVENTA LEFT JOIN tldproductos ON tbldetalleventa.IDPRODUCTO=tldproductos.ID left join clientes ON tblventas.SOCIO=clientes.SOCIO LEFT JOIN ctactes on tblventas.ID=ctactes.IDVENTA WHERE tblventas.SOCIO=12  AND (tblventas.Fecha BETWEEN date('$desde') AND date('$hasta'))  GROUP BY tldproductos.Nombre");
+            $sentencia=$pdo->prepare("SELECT tldproductos.Nombre ,SUM((tbldetalleventa.CANTIDAD*tbldetalleventa.PRECIOUNITARIO)/1.21) as NETO, SUM((tbldetalleventa.CANTIDAD*tbldetalleventa.PRECIOUNITARIO)-((tbldetalleventa.CANTIDAD*tbldetalleventa.PRECIOUNITARIO)/1.21)) AS IVA , SUM(tbldetalleventa.CANTIDAD*tbldetalleventa.PRECIOUNITARIO) as TOTAL FROM tblventas LEFT JOIN tbldetalleventa on tblventas.ID=tbldetalleventa.IDVENTA LEFT JOIN tldproductos ON tbldetalleventa.IDPRODUCTO=tldproductos.ID left join clientes ON tblventas.SOCIO=clientes.SOCIO LEFT JOIN ctactes on tblventas.ID=ctactes.IDVENTA WHERE tblventas.SOCIO=12  AND (tblventas.Fecha BETWEEN date('$desde') AND date('$hasta'))  GROUP BY tldproductos.Nombre");
             $sentencia->execute();
             $listaProductos=$sentencia->fetchAll(PDO::FETCH_ASSOC);
             //print_r($listaProductos);
@@ -124,9 +121,6 @@ $hasta=date("Y-m-d");
          <?php foreach($listaProductos as $producto) { ?>
          
   <tr>
-  <td width="8%"><?php $date=date_create($producto['Fecha']) ; echo date_format($date,"d/m/Y") ?></td>
-                      
-                      <td width="8%" text-right><?php echo substr($producto['N°Comprobante'], -4) ?></td>
                       <td width="8%" text-right><?php echo $producto['Nombre']  ?></td>
               
                       <td width="8%" text-right> <?php echo number_format($producto['NETO'],2)  ?></td>
@@ -151,7 +145,7 @@ $hasta=date("Y-m-d");
           </div>
 
         </div>
-        <div style="align:right;"><a href="excelIIBB.php?desde=<?php echo $desde?>&hasta=<?php echo $hasta?><button type="button" class="btn btn-secondary">Exportar a Excel</button></a></div> 
+
 
         </div>
         </div>
